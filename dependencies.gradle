@@ -1,0 +1,88 @@
+def coroutines = "1.3.9"
+def JavaxInject = "1"
+def Mockito = '2.22.0'
+def Junit = '4.13'
+def LifeCycle = '2.2.0'
+def TestRule = '1.2.0'
+def JunitExt = '1.1.1'
+def Arch_version = '2.1.0'
+def Retrofit = '2.9.0'
+def Room = '2.2.5'
+def Navigation = '2.3.0'
+def Material = '1.2.1'
+def Constraint = '2.0.2'
+def Timber = '4.7.1'
+def Dagger = '2.27'
+def CoreVersion = '1.3.2'
+def Espresso = '3.3.0'
+def OkHttp = '4.5.0'
+def Gson = '2.8.6'
+def Preference = '1.1.1'
+def AppCompact = '1.1.0'
+def LeakCanary = '2.2'
+
+ext.coreDeps = [
+        kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
+        core_ktx  : "androidx.core:core-ktx:${CoreVersion}",
+        appCompact: "androidx.appcompat:appcompat:${AppCompact}"
+]
+
+ext.uiDeps = [
+        appCompact  : "androidx.appcompat:appcompat:${AppCompact}",
+        material    : "com.google.android.material:material:${Material}",
+        constraint  : "androidx.constraintlayout:constraintlayout:${Constraint}",
+        nav_fragment: "androidx.navigation:navigation-fragment-ktx:${Navigation}",
+        nav_ktx     : "androidx.navigation:navigation-ui-ktx:${Navigation}"
+]
+
+ext.deps = [
+        coroutines_core    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}",
+        coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}",
+
+        javax         : "javax.inject:javax.inject:$JavaxInject",
+        lifeCycleExt  : "androidx.lifecycle:lifecycle-extensions:${LifeCycle}",
+
+        retrofit      : "com.squareup.retrofit2:retrofit:${Retrofit}",
+        gson_converter: "com.squareup.retrofit2:converter-gson:${Retrofit}",
+
+        okhttp        : "com.squareup.okhttp3:okhttp:${OkHttp}",
+        okhttp_logger : "com.squareup.okhttp3:logging-interceptor:${OkHttp}",
+        gson          : "com.google.code.gson:gson:${Gson}",
+
+        roomRuntime   : "androidx.room:room-runtime:${Room}",
+        roomKtx       : "androidx.room:room-ktx:${Room}",
+
+        timber        : "com.jakewharton.timber:timber:${Timber}",
+
+        dagger        : "com.google.dagger:dagger:${Dagger}",
+        dagger_android: "com.google.dagger:dagger-android:${Dagger}",
+        dagger_support: "com.google.dagger:dagger-android-support:${Dagger}",
+        preference    : "androidx.preference:preference-ktx:${Preference}",
+
+        leak_canary   : "com.jakewharton.timber:timber:${LeakCanary}"
+]
+
+ext.kaptDeps = [
+        lifecyle_common_java8: "androidx.lifecycle:lifecycle-common-java8:${LifeCycle}",
+        roomComplier         : "androidx.room:room-compiler:${Room}",
+        daggerProcessor      : "com.google.dagger:dagger-android-processor:${Dagger}",
+        daggerComplier       : "com.google.dagger:dagger-compiler:${Dagger}"
+]
+
+ext.testDeps = [
+        junit    : "junit:junit:${Junit}",
+        mockito  : "org.mockito:mockito-core:${Mockito}",
+        core_arch: "androidx.arch.core:core-testing:${Arch_version}",
+]
+
+
+ext.androidTestDeps = [
+        ext        : "androidx.test.ext:junit:${JunitExt}",
+        test_runner: "androidx.test:runner:${TestRule}",
+        test_rule  : "androidx.test:rules:1.1.1",
+        testCore   : "androidx.test:core:1.2.0",
+        mockito    : "org.mockito:mockito-android:3.2.0",
+        espresso   : "androidx.test.espresso:espresso-core:${Espresso}"
+]
+
+

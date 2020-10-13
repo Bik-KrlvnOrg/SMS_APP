@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_dashboard">
+    <fragment
+        android:id="@+id/navigation_academics"
+        android:name="com.cheise_proj.student.ui.academics.AcademicsFragment"
+        android:label="@string/title_academics"
+        tools:layout="@layout/fragment_academics" />
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.cheise_proj.student.ui.account.AccountFragment"
+        android:label="@string/title_accounts"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/navigation_inbox"
+        android:name="com.cheise_proj.student.ui.inbox.InboxFragment"
+        android:label="@string/title_inbox"
+        tools:layout="@layout/fragment_inbox" />
+    <fragment
+        android:id="@+id/navigation_library"
+        android:name="com.cheise_proj.student.ui.library.LibraryFragment"
+        android:label="@string/title_library"
+        tools:layout="@layout/fragment_library" />
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.cheise_proj.student.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+</navigation>
