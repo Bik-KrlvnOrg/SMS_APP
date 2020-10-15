@@ -26,6 +26,7 @@
                 android:id="@+id/nav_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:itemTextColor="@color/bottomNavTextColor"
                 app:menu="@menu/bottom_student_menu" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -35,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_home_black_24dp"
-            android:tint="@android:color/white"
             app:layout_anchor="@id/bottomAppBar" />
 
         <fragment

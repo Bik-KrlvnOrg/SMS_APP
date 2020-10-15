@@ -2,5 +2,12 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#BB86FC</color>
+    <color name="colorError">#B00020</color>
+
+    <color name="primaryTextColor">#373737</color>
+    <color name="bottomNavTextColor">@color/colorPrimary</color>
+    <color name="primaryTextLightColor">#8e8e8e</color>
+    <color name="bgColor">#FFFFFF</color>
+    <color name="textColorLight">#ffffff</color>
 </resources>
