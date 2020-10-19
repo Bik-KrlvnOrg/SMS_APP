@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SMS_APP</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_academics">Academics</string>
+    <string name="title_accounts">Accounts</string>
+    <string name="title_library">Library</string>
+    <string name="title_inbox">Inbox</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
