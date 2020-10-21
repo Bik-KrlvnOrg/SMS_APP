@@ -34,12 +34,12 @@ subprojects {
                 implementation coreDeps.values()
                 kapt kaptDeps.values()
                 implementation uiDeps.values()
+                implementation deps.timber
                 testImplementation testDeps.values()
             }
 
         }
         dependencies {
-            implementation coreDeps.kotlin
             implementation deps.javax
         }
 
