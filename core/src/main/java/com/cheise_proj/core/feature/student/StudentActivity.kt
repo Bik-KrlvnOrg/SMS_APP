@@ -7,9 +7,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cheise_proj.core.R
+import com.cheise_proj.core.shared.ui.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class StudentActivity : AppCompatActivity() {
+class StudentActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

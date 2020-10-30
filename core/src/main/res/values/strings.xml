@@ -16,7 +16,8 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be >3 characters</string>
+    <string name="invalid_user_type">Select a role</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_forget_password">forget password</string>
 </resources>

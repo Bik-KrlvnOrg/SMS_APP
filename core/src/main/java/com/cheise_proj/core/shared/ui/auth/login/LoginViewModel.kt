@@ -15,24 +15,53 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val authRepository: AuthenticationRepository,
     private val networkState: NetworkState
 ) : BaseViewModel() {
-    private val _userData: MutableLiveData<User> = MutableLiveData()
 
-    val username: MutableLiveData<String> = MutableLiveData("")
-    val password: MutableLiveData<String> = MutableLiveData("")
-    var selectedItem: MutableLiveData<String> = MutableLiveData("")
-    val canExecute: LiveData<Boolean> = isError
-    val forgetPassword: MutableLiveData<Boolean> = MutableLiveData(false)
-    val userData: LiveData<User> = _userData
+    private val passwordLength = 3
+    private val _userData: MutableLiveData<User> = MutableLiveData()
+    val onUsernameChange: MutableLiveData<String> = MutableLiveData()
+    val onPasswordChange: MutableLiveData<String> = MutableLiveData()
+    val onSelectionChange: MutableLiveData<String> = MutableLiveData()
+    val usernameError: MutableLiveData<String> = MutableLiveData()
+    val passwordError: MutableLiveData<String> = MutableLiveData()
+    private val _canExecute: MutableLiveData<Boolean> = MutableLiveData(false)
+    val canExecute: LiveData<Boolean> = _canExecute
+    val userData: LiveData<User?> = _userData
+    private val selection: LiveData<String> = onSelectionChange
+
+    init {
+        onUsernameChange.value = ""
+        onPasswordChange.value = ""
+    }
+
+
+    val username: LiveData<String> = Transformations.map(onUsernameChange) {
+        _canExecute.value = isValidateForm()
+        if (!validateText(it)) {
+            usernameError.value = "invalid username"
+            return@map null
+        }
+        it
+    }
+
+    val password: LiveData<String> = Transformations.map(onPasswordChange) {
+        _canExecute.value = isValidateForm()
+        if (!validateLength(it)) {
+            passwordError.value = "invalid password"
+            return@map null
+        }
+        it
+    }
 
     @ExperimentalCoroutinesApi
     fun onLogin() {
-        val user = LoginUser(username.value, password.value, selectedItem.value)
+        val form = LoginUser(username.value, password.value, selection.value)
         message.value = null
         if (!networkState.isConnected()) {
             message.value = "No network"
@@ -42,78 +71,37 @@ class LoginViewModel @Inject constructor(
             try {
 
                 authRepository.authenticateUser(
-                    username = user.username ?: "",
-                    password = user.password ?: "",
-                    type = user.type ?: ""
+                    username = form.username ?: "",
+                    password = form.password ?: "",
+                    type = form.type ?: ""
                 ).onStart {
                     setLoading(true)
+                    _canExecute.postValue(false)
                 }.onCompletion {
                     setLoading(false)
-                }.collect { user ->
-                    _userData.postValue(user)
-                    message.postValue("welcome: ${user.username}")
+                    _canExecute.postValue(true)
+
+                }.collect {
+                    it.type = it.type?.toUpperCase(Locale.getDefault())
+                    Timber.i("user: $it")
+                    _userData.postValue(it)
                 }
             } catch (e: Exception) {
                 setLoading(false)
+                _canExecute.postValue(true)
                 message.postValue(e.localizedMessage)
                 Timber.e(e, e.localizedMessage)
             }
         }
     }
 
-    fun onForgetPassword() {
-        forgetPassword.value = true
-    }
-
-    private fun validateLength(value: String): Boolean = value.length > 3
     private fun validateText(value: String): Boolean = value.isNotEmpty()
-    private fun validateRole(value: String): Boolean = value.isNotEmpty() && value != "Role"
+    private fun validateLength(value: String): Boolean = value.length > passwordLength
 
-    private val isUsernameValid: LiveData<Boolean> =
-        Transformations.map(username) { validateText(it) }
-
-    private val isPasswordValid: LiveData<Boolean> =
-        Transformations.map(password) { validateLength(it) }
-
-    private val isUserTypeValid: LiveData<Boolean> =
-        Transformations.map(selectedItem) { validateRole(it) }
-
-    private fun isValidData(): Boolean {
-        return isUsernameValid.value ?: false &&
-                isPasswordValid.value ?: false &&
-                isUserTypeValid.value ?: false
+    private fun isValidateForm(): Boolean {
+        return username.value?.isNotEmpty() ?: false &&
+                password.value?.isNotEmpty() ?: false
     }
 
 
-    val usernameError: LiveData<String> = Transformations.map(isUsernameValid) {
-        isError.value = isValidData()
-        when (it) {
-            true -> null
-            false -> "enter username"
-        }
-    }
-    val passwordError: LiveData<String> = Transformations.map(isPasswordValid) {
-        isError.value = isValidData()
-        when (it) {
-            true -> null
-            false -> "invalid password"
-        }
-    }
-    val userTypeError: LiveData<String> = Transformations.map(isUserTypeValid) {
-        isError.value = isValidData()
-        when (it) {
-            true -> null
-            false -> "select a role"
-        }
-    }
-
-    fun onUserTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        val usr = s.trim().toString()
-        username.value = usr
-    }
-
-    fun onPasswordTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        val pass = s.trim().toString()
-        password.value = pass
-    }
 }

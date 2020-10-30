@@ -1,23 +1,25 @@
 package com.cheise_proj.core.shared.ui.auth.login
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.AdapterView
+import android.widget.EditText
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.cheise_proj.core.R
 import com.cheise_proj.core.common.AuthType
-import com.cheise_proj.core.databinding.FragmentLoginBinding
 import com.cheise_proj.core.domain.model.User
 import com.cheise_proj.core.shared.ui.BaseFragment
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_login.*
 import timber.log.Timber
-import java.util.*
 
 class LoginFragment : BaseFragment<LoginViewModel>() {
 
-    private lateinit var binding: FragmentLoginBinding
     private lateinit var snackBar: Snackbar
 
     override fun onCreateView(
@@ -25,49 +27,80 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
+        snackBar = Snackbar.make(root, "", Snackbar.LENGTH_SHORT)
+        username.addTextChangedListener(liveWatcher(viewModel.onUsernameChange))
+        password.addTextChangedListener(liveWatcher(viewModel.onPasswordChange))
+        auth_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.onSelectionChange.value = auth_type.selectedItem.toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        login.setOnClickListener { viewModel.onLogin() }
         subscribeObserver()
     }
 
-    private fun subscribeObserver() {
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+    private fun liveWatcher(onTextChange: MutableLiveData<String>): TextWatcher {
+        return object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-        viewModel.userData.observe(viewLifecycleOwner, {
-            Timber.i("login_user: $it")
-            navigateToDashboard(it)
-        })
+            }
 
-        viewModel.message.observe(viewLifecycleOwner, ::showMessage)
-        viewModel.userTypeError.observe(viewLifecycleOwner, {})
-        viewModel.forgetPassword.observe(viewLifecycleOwner, ::navigateToForgetPasswordPage)
-    }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
-    private fun navigateToDashboard(user: User?) {
-        user?.let {
-            val type = AuthType.valueOf(it.type?.toUpperCase(Locale.getDefault())!!)
-            if (type == AuthType.STUDENT) {
-                findNavController().navigate(R.id.action_loginFragment_to_studentActivity)
-                requireActivity().finish()
+            override fun afterTextChanged(p0: Editable?) {
+                onTextChange.value = p0.toString()
             }
         }
     }
 
-    private fun showMessage(it: String?) {
-        it?.let { snackBar.setText(it).show() }
+    private fun subscribeObserver() {
+        viewModel.message.observe(viewLifecycleOwner, { showMessage(snackBar, it) })
+        viewModel.username.observe(viewLifecycleOwner, {})
+        viewModel.password.observe(viewLifecycleOwner, {})
+        viewModel.userData.observe(viewLifecycleOwner, {
+            navigateUser(it)
+        })
+        viewModel.isLoading.observe(viewLifecycleOwner, { showProgress(loading, it) })
+        viewModel.usernameError.observe(viewLifecycleOwner, { showErrorMessage(username, it) })
+        viewModel.passwordError.observe(viewLifecycleOwner, { showErrorMessage(password, it) })
+        viewModel.canExecute.observe(viewLifecycleOwner, {
+            Timber.i("canEx: $it")
+            login.isEnabled = it
+        })
     }
 
-    private fun navigateToForgetPasswordPage(onClick: Boolean) {
-        val restoreClick = false
-        if (onClick) {
-            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
-            viewModel.forgetPassword.postValue(restoreClick)
+    private fun navigateUser(user: User?) {
+        user?.let {
+            when (AuthType.valueOf(it.type!!)) {
+                AuthType.STUDENT -> {
+                    navigateStudentDashboard()
+                }
+                AuthType.STAFF -> {
+                }
+                AuthType.ADMIN -> {
+                }
+            }
+        }
+    }
+
+    private fun navigateStudentDashboard() {
+        findNavController().navigate(R.id.action_loginFragment_to_studentActivity)
+        requireActivity().finish()
+    }
+
+    private fun showErrorMessage(view: EditText, value: String?) {
+        value?.let {
+            login.isEnabled = false
+            view.error = it
         }
     }
 

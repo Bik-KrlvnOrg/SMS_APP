@@ -17,7 +17,6 @@ android {
         }
     }
 
-    android.buildFeatures.dataBinding = true
 
 }
 
@@ -32,6 +31,7 @@ dependencies {
     implementation deps.dagger
     implementation deps.dagger_android
     implementation deps.dagger_support
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     kapt kaptDeps.lifecyle_common_java8
 }

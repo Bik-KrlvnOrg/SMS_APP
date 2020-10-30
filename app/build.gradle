@@ -27,12 +27,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    android.buildFeatures.dataBinding = true
 
 }
 
 dependencies {
     implementation project(path: ':core')
-    implementation project(path: ':student')
     implementation deps.values()
 }

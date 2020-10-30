@@ -1,6 +1,12 @@
-package com.cheise_proj.core.domain.model
+package com.cheise_proj.core.data.local.entity
 
-data class Student(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "student")
+data class StudentEntity(
+    @PrimaryKey(autoGenerate = false)
+    val id: Int,
     val address: String,
     val admissionDate: String,
     val admissionId: String,
@@ -19,7 +25,6 @@ data class Student(
     val firstName: String,
     val fromDate: String,
     val gender: String,
-    val id: Int,
     val lastName: String,
     val middleName: String,
     val motherName: String,

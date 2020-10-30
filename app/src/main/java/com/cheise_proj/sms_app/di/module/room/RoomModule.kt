@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.cheise_proj.core.data.local.LocalDatabase
 import com.cheise_proj.core.data.local.LocalDatabase.Companion.DATABASE_NAME
+import com.cheise_proj.core.data.local.dao.ProfileDao
 import com.cheise_proj.core.data.local.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -30,5 +31,9 @@ class RoomModule {
     @Singleton
     @Provides
     fun provideUserDao(localDatabase: LocalDatabase): UserDao = localDatabase.userDao()
+
+    @Singleton
+    @Provides
+    fun provideProfileDao(localDatabase: LocalDatabase): ProfileDao = localDatabase.profileDao()
 
 }
