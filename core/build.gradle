@@ -16,8 +16,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {
     implementation deps.jwt
+    implementation deps.retrofit
+    implementation deps.coroutines_core
+    implementation deps.coroutines_android
+    implementation deps.gson
+    implementation deps.roomRuntime
+    implementation deps.roomKtx
+    implementation deps.dagger
+    implementation deps.dagger_android
+    implementation deps.dagger_support
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    kapt kaptDeps.lifecyle_common_java8
 }
