@@ -4,7 +4,7 @@ package com.cheise_proj.core.data.remote.model.dto
 import com.google.gson.annotations.SerializedName
 
 data class StudentDto(
-    @SerializedName("studentProfile")
+    @SerializedName("data")
     val studentProfile: StudentProfileDto
 ) {
     data class StudentProfileDto(

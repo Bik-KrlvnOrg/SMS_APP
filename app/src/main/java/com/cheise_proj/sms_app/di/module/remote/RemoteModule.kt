@@ -15,8 +15,11 @@ import javax.inject.Singleton
 @Module
 class RemoteModule {
 
+    @Singleton
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(
+        accessTokenInterceptor: AccessTokenInterceptor,authenticator: AccessTokenAuthenticator
+    ): OkHttpClient {
         val logger = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
             override fun log(message: String) {
                 Timber.tag("OKHTTP").i(message)
@@ -28,6 +31,8 @@ class RemoteModule {
             .connectTimeout(5, TimeUnit.MINUTES)
             .writeTimeout(5, TimeUnit.MINUTES)
             .readTimeout(5, TimeUnit.MINUTES)
+            .addInterceptor(accessTokenInterceptor)
+            .authenticator(authenticator)
             .addInterceptor(logger)
             .retryOnConnectionFailure(true)
             .build()

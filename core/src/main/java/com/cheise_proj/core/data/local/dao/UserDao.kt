@@ -14,4 +14,7 @@ interface UserDao {
 
     @Query("SELECT * FROM user LIMIT 1")
     fun getUser(): Flow<UserEntity?>
+
+    @Query("UPDATE user SET accessToken = :newAccessToken,refreshToken = :newRefreshToken WHERE username = :username")
+    fun updateTokens(username: String?, newAccessToken: String, newRefreshToken: String)
 }
