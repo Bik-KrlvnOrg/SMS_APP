@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.cheise_proj.core.domain.model.Student
 import com.cheise_proj.core.domain.repository.UserRepository
-import com.cheise_proj.core.extension.serializeToMap
 import com.cheise_proj.core.shared.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,8 +20,8 @@ class ProfileViewModel @Inject constructor(
     private val userRepository: UserRepository<Student>
 ) :
     BaseViewModel() {
-    private val _studentProfile: MutableLiveData<List<String>> = MutableLiveData()
-    val studentProfile: LiveData<List<String>> = _studentProfile
+    private val _studentProfile: MutableLiveData<HashMap<String,String>> = MutableLiveData()
+    val studentProfile: LiveData<HashMap<String,String>> = _studentProfile
 
     init {
         loadStudentProfile()
@@ -33,18 +32,21 @@ class ProfileViewModel @Inject constructor(
             try {
                 userRepository.getProfile()
                     .onStart { isLoading.postValue(true) }
-                    .map { student ->
-                        val serialize = student.serializeToMap()
-                        val list = arrayListOf<String>()
-                        serialize.forEach {
-                            list.add(it.value.toString())
-                        }
-                        list
+                    .map {
+                        val hashMap = HashMap<String, String>()
+                        hashMap["Username"] = it.username
+                        hashMap["Gender"] = it.gender
+                        hashMap["Name"] = "${it.firstName} ${it.middleName} ${it.lastName}"
+                        hashMap["Email"] = it.email
+                        hashMap["Contact"] = it.contact
+                        hashMap["Admission Status"] = it.admissionStatus
+                        hashMap["Dob"] = it.dob
+                        hashMap
                     }
+
                     .collect {
                         isLoading.postValue(false)
                         Timber.i("student: $it")
-
                         _studentProfile.postValue(it)
                     }
             } catch (e: Exception) {

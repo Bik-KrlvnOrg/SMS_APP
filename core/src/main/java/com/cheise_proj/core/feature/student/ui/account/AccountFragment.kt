@@ -56,7 +56,7 @@ class AccountFragment : Fragment() {
     }
 
     private fun navigateToProfile() {
-        findNavController().navigate(R.id.action_navigation_account_to_navigation_profile)
+        findNavController().navigate(R.id.action_accountFragment_to_profileFragment)
     }
 
 }
