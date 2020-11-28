@@ -30,6 +30,9 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
     }
 
     private fun subscribeObserver() {
+        viewModel.isLoading.observe(viewLifecycleOwner,{
+            showProgress(loading,it)
+        })
         viewModel.studentProfile.observe(viewLifecycleOwner, {
             applyProfileItems(it)
         })
