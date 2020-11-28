@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_academics"
+        android:icon="@drawable/ic_graduation"
+        android:title="@string/title_academics" />
+
+    <item
+        android:id="@+id/navigation_inbox"
+
+        android:icon="@drawable/ic_email"
+        android:title="@string/title_inbox" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_library"
+        android:icon="@drawable/ic_library"
+        android:title="@string/title_library" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/title_accounts" />
+
+</menu>
