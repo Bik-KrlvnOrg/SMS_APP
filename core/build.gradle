@@ -21,6 +21,10 @@ android {
 }
 
 dependencies {
+    implementation deps.rxKotlin
+    implementation deps.rxJava
+    implementation deps.rxBridge
+    implementation deps.reactivestreams_ktx
     implementation deps.jwt
     implementation deps.retrofit
     implementation deps.coroutines_core

@@ -1,3 +1,5 @@
+include ':infrastructure'
+include ':domain'
 include ':core'
 include ':student'
 include ':app'
