@@ -10,8 +10,7 @@ data class UserEntity(
     var username: String?,
     var type: String,
     var iat: Long?,
-    var exp: Long?
-) {
-    var accessToken: String? = null
-    var refreshToken: String? = null
-}
+    var exp: Long?,
+    var accessToken: String?,
+    var refreshToken: String?
+)

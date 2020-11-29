@@ -3,28 +3,24 @@ package com.cheise_proj.core.shared.ui.auth.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
-import com.cheise_proj.core.domain.model.User
-import com.cheise_proj.core.domain.repository.AuthenticationRepository
+import com.cheise_proj.core.shared.data.model.Resource
 import com.cheise_proj.core.shared.viewmodel.BaseViewModel
 import com.cheise_proj.core.utils.NetworkState
-import kotlinx.coroutines.Dispatchers
+import com.cheise_proj.domain.model.User
+import com.cheise_proj.domain.usecase.auth.AuthenticationTask
+import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthenticationRepository,
+    private val authenticationTask: AuthenticationTask,
     private val networkState: NetworkState
 ) : BaseViewModel() {
 
     private val passwordLength = 3
-    private val _userData: MutableLiveData<User> = MutableLiveData()
+    private var _userData: MutableLiveData<Resource<User>> = MutableLiveData()
     val onUsernameChange: MutableLiveData<String> = MutableLiveData()
     val onPasswordChange: MutableLiveData<String> = MutableLiveData()
     val onSelectionChange: MutableLiveData<String> = MutableLiveData()
@@ -32,7 +28,7 @@ class LoginViewModel @Inject constructor(
     val passwordError: MutableLiveData<String> = MutableLiveData()
     private val _canExecute: MutableLiveData<Boolean> = MutableLiveData(false)
     val canExecute: LiveData<Boolean> = _canExecute
-    val userData: LiveData<User?> = _userData
+    val userData: LiveData<Resource<User>> = _userData
     private val selection: LiveData<String> = onSelectionChange
 
     init {
@@ -67,32 +63,27 @@ class LoginViewModel @Inject constructor(
             message.value = "No network"
             return
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-
-                authRepository.authenticateUser(
-                    username = form.username ?: "",
-                    password = form.password ?: "",
-                    type = form.type ?: ""
-                ).onStart {
-                    setLoading(true)
-                    _canExecute.postValue(false)
-                }.onCompletion {
-                    setLoading(false)
-                    _canExecute.postValue(true)
-
-                }.collect {
+        disposable.add(
+            authenticationTask.execute(
+                AuthenticationTask.Params(
+                    form.username!!,
+                    form.password!!,
+                    form.type!!
+                )
+            )
+                .map {
                     it.type = it.type?.toUpperCase(Locale.getDefault())
-                    Timber.i("user: $it")
-                    _userData.postValue(it)
+                    it
                 }
-            } catch (e: Exception) {
-                setLoading(false)
-                _canExecute.postValue(true)
-                message.postValue(e.localizedMessage)
-                Timber.e(e, e.localizedMessage)
-            }
-        }
+                .map {
+                    Resource.success(it)
+                }
+                .startWith(Observable.just(Resource.loading()))
+                .onErrorResumeNext { Observable.just(Resource.error(it.localizedMessage)) }
+                .subscribe({
+                    _userData.value = it
+                }, { Timber.e(it, it.localizedMessage) })
+        )
     }
 
     private fun validateText(value: String): Boolean = value.isNotEmpty()

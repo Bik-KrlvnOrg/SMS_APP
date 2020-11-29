@@ -40,12 +40,14 @@ class AuthenticationRepositoryImpl @Inject constructor(
             Timber.i("auth_dto: $it")
             val decodeBody = jwtService.decodeBody(it.accessToken)
             val entity = decodeBody.mapTo()
+            entity.accessToken = it.accessToken
+            entity.refreshToken = it.refreshToken
             userDao.saveUser(entity)
             decodeBody
         }
     }
 
-    override fun getUser(): Observable<User?> {
+    override fun getUser(): Observable<User> {
         return RxJavaBridge.toV3Observable(
             userDao.getUser()
                 .map {

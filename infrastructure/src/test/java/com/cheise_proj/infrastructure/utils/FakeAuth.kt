@@ -25,7 +25,9 @@ object FakeAuth {
             username = "any username",
             exp = null,
             iat = null,
-            type = "any type"
+            type = "any type",
+            refreshToken = "any refresh token",
+            accessToken = "any access token"
         )
     }
 

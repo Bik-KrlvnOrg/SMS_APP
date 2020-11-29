@@ -11,7 +11,7 @@ abstract class ObservableUseCase<T, in Input>(
     BaseUseCase(backgroundScheduler, foregroundScheduler) {
     protected abstract fun generateObservable(input: Input?): Observable<T>
 
-    fun execute(input: Input?): Observable<T> = generateObservable(input)
+    fun execute(input: Input? = null): Observable<T> = generateObservable(input)
         .subscribeOn(backgroundScheduler)
         .observeOn(foregroundScheduler)
 }

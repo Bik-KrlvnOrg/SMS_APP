@@ -1,11 +1,13 @@
-package com.cheise_proj.core.utils
+package com.cheise_proj.sms_app.di.module.infrastructure.utils
 
 import com.auth0.android.jwt.JWT
 import com.cheise_proj.domain.model.User
+import com.cheise_proj.infrastructure.utils.JwtService
 import timber.log.Timber
+import javax.inject.Inject
 
-object JWTUtils {
-    fun decodeBody(token: String): User {
+class JwtServiceImpl @Inject constructor() : JwtService {
+    override fun decodeBody(token: String): User {
         val jwt = JWT(token)
         val claims = jwt.claims
         Timber.i("jwt_claims: ${claims.entries}")

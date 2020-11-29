@@ -11,18 +11,22 @@ object UserMapper : Mapper<User, UserEntity> {
             username = t.username,
             type = t.type ?: "",
             exp = 0,
-            iat = 0
+            iat = 0,
+            accessToken = t.accessToken,
+            refreshToken = t.refreshToken
         )
     }
 
     override fun mapFrom(e: UserEntity): User {
-        return User().apply {
-            id = e.id
-            username = e.username
-            type = e.type
-            exp = e.exp
-            iat = e.iat
-        }
+        return User(
+            id = e.id,
+            username = e.username,
+            type = e.type,
+            exp = e.exp,
+            iat = e.iat,
+            refreshToken = e.refreshToken,
+            accessToken = e.accessToken
+        )
     }
 }
 

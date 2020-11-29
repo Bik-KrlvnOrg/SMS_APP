@@ -36,6 +36,7 @@ dependencies {
     implementation deps.dagger_android
     implementation deps.dagger_support
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':domain')
 
     kapt kaptDeps.lifecyle_common_java8
 }
