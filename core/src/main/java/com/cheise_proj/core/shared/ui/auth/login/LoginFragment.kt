@@ -12,8 +12,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.cheise_proj.core.R
 import com.cheise_proj.core.common.AuthType
-import com.cheise_proj.core.domain.model.User
+import com.cheise_proj.core.shared.data.model.Status
 import com.cheise_proj.core.shared.ui.BaseFragment
+import com.cheise_proj.domain.model.User
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 import timber.log.Timber
@@ -67,7 +68,18 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
         viewModel.username.observe(viewLifecycleOwner, {})
         viewModel.password.observe(viewLifecycleOwner, {})
         viewModel.userData.observe(viewLifecycleOwner, {
-            navigateUser(it)
+            when (it.status) {
+                Status.LOADING -> showProgress(loading, true)
+                Status.ERROR -> {
+                    showProgress(loading, false)
+                    showMessage(snackBar, it.message)
+                }
+                Status.SUCCESS -> {
+                    showProgress(loading, false)
+                    navigateUser(it.data)
+
+                }
+            }
         })
         viewModel.isLoading.observe(viewLifecycleOwner, { showProgress(loading, it) })
         viewModel.usernameError.observe(viewLifecycleOwner, { showErrorMessage(username, it) })

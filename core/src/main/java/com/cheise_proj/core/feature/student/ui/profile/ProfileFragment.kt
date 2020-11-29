@@ -30,8 +30,8 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
     }
 
     private fun subscribeObserver() {
-        viewModel.isLoading.observe(viewLifecycleOwner,{
-            showProgress(loading,it)
+        viewModel.isLoading.observe(viewLifecycleOwner, {
+            showProgress(loading, it)
         })
         viewModel.studentProfile.observe(viewLifecycleOwner, {
             applyProfileItems(it)
@@ -39,8 +39,9 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
 
     }
 
-    private fun applyProfileItems(data: HashMap<String, String>) {
+    private fun applyProfileItems(data: HashMap<String, String?>) {
         item_img.setImageResource(R.drawable.ic_baseline_account_circle_24)
+        item_container.removeAllViews()
         for ((key, value) in data) {
             val itemList = LayoutInflater.from(requireContext())
                 .inflate(R.layout.item_profile, item_container, false)
@@ -51,7 +52,6 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
             }
             item_container.addView(itemList)
         }
-
     }
 
 

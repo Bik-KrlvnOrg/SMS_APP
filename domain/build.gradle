@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation deps.rxKotlin
+    implementation deps.rxJava
+
+    testImplementation testDeps.mockito
+    testImplementation testDeps.junit
+
+}

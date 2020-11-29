@@ -21,6 +21,7 @@ def Preference = '1.1.1'
 def AppCompact = '1.1.0'
 def LeakCanary = '2.2'
 def Jwt = '2.0.0'
+def RxJava = '3.0.0'
 
 ext.coreDeps = [
         kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
@@ -37,31 +38,40 @@ ext.uiDeps = [
 ]
 
 ext.deps = [
-        coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}",
-        coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}",
 
-        javax             : "javax.inject:javax.inject:$JavaxInject",
-        lifeCycleExt      : "androidx.lifecycle:lifecycle-extensions:${LifeCycle}",
+        rxKotlin           : "io.reactivex.rxjava3:rxkotlin:${RxJava}",
+        rxJava             : "io.reactivex.rxjava3:rxjava:${RxJava}",
+        rxJavaAndroid      : "io.reactivex.rxjava3:rxandroid:${RxJava}",
+        rxBridge           : "com.github.akarnokd:rxjava3-bridge:${RxJava}",
 
-        retrofit          : "com.squareup.retrofit2:retrofit:${Retrofit}",
-        gson_converter    : "com.squareup.retrofit2:converter-gson:${Retrofit}",
+        coroutines_core    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines}",
+        coroutines_android : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines}",
 
-        okhttp            : "com.squareup.okhttp3:okhttp:${OkHttp}",
-        okhttp_logger     : "com.squareup.okhttp3:logging-interceptor:${OkHttp}",
-        gson              : "com.google.code.gson:gson:${Gson}",
+        javax              : "javax.inject:javax.inject:$JavaxInject",
+        lifeCycleExt       : "androidx.lifecycle:lifecycle-extensions:${LifeCycle}",
+        reactivestreams_ktx: "androidx.lifecycle:lifecycle-reactivestreams-ktx:${LifeCycle}",
 
-        roomRuntime       : "androidx.room:room-runtime:${Room}",
-        roomKtx           : "androidx.room:room-ktx:${Room}",
+        retrofit           : "com.squareup.retrofit2:retrofit:${Retrofit}",
+        gson_converter     : "com.squareup.retrofit2:converter-gson:${Retrofit}",
 
-        timber            : "com.jakewharton.timber:timber:${Timber}",
+        okhttp             : "com.squareup.okhttp3:okhttp:${OkHttp}",
+        okhttp_logger      : "com.squareup.okhttp3:logging-interceptor:${OkHttp}",
+        gson               : "com.google.code.gson:gson:${Gson}",
 
-        dagger            : "com.google.dagger:dagger:${Dagger}",
-        dagger_android    : "com.google.dagger:dagger-android:${Dagger}",
-        dagger_support    : "com.google.dagger:dagger-android-support:${Dagger}",
-        preference        : "androidx.preference:preference-ktx:${Preference}",
+        roomRuntime        : "androidx.room:room-runtime:${Room}",
+        roomKtx            : "androidx.room:room-ktx:${Room}",
+        rxJava_adapter     : "com.squareup.retrofit2:adapter-rxjava3:${Retrofit}",
+        roomRxJava2        : "androidx.room:room-rxjava2:${Room}",
 
-        leak_canary       : "com.jakewharton.timber:timber:${LeakCanary}",
-        jwt               : "com.auth0.android:jwtdecode:${Jwt}"
+        timber             : "com.jakewharton.timber:timber:${Timber}",
+
+        dagger             : "com.google.dagger:dagger:${Dagger}",
+        dagger_android     : "com.google.dagger:dagger-android:${Dagger}",
+        dagger_support     : "com.google.dagger:dagger-android-support:${Dagger}",
+        preference         : "androidx.preference:preference-ktx:${Preference}",
+
+        leak_canary        : "com.jakewharton.timber:timber:${LeakCanary}",
+        jwt                : "com.auth0.android:jwtdecode:${Jwt}"
 ]
 
 ext.kaptDeps = [

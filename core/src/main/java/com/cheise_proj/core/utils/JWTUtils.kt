@@ -1,7 +1,7 @@
 package com.cheise_proj.core.utils
 
 import com.auth0.android.jwt.JWT
-import com.cheise_proj.core.domain.model.User
+import com.cheise_proj.domain.model.User
 import timber.log.Timber
 
 object JWTUtils {
