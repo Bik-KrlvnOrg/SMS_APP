@@ -13,10 +13,17 @@
         <action
             android:id="@+id/action_accountFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_feesPaidFragment"
+            app:destination="@id/feesPaidFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.cheise_proj.core.feature.student.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/feesPaidFragment"
+        android:name="com.cheise_proj.core.feature.student.ui.fees.FeesPaidFragment"
+        android:label="FeesPaid" />
 </navigation>

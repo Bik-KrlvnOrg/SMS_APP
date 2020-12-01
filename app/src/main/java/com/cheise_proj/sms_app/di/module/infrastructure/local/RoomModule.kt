@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.cheise_proj.infrastructure.local.LocalDatabase
 import com.cheise_proj.infrastructure.local.LocalDatabase.Companion.DATABASE_NAME
+import com.cheise_proj.infrastructure.local.dao.FeesDao
 import com.cheise_proj.infrastructure.local.dao.ProfileDao
 import com.cheise_proj.infrastructure.local.dao.UserDao
 import dagger.Module
@@ -27,6 +28,10 @@ class RoomModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideFeesDao(localDatabase: LocalDatabase): FeesDao = localDatabase.feesDao()
 
     @Singleton
     @Provides
