@@ -33,4 +33,6 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation deps.values()
+    implementation project(path: ':infrastructure')
+    implementation project(path: ':domain')
 }

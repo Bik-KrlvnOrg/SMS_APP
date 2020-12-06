@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.cheise_proj.core.R
 import com.cheise_proj.core.common.AuthType
-import com.cheise_proj.core.domain.model.User
+import com.cheise_proj.core.shared.data.model.Status
 import com.cheise_proj.core.shared.ui.BaseFragment
+import com.cheise_proj.domain.model.User
 
 
 /**
@@ -33,7 +35,17 @@ class SplashFragment : BaseFragment<SplashViewModel>() {
 
     private fun subscribeObserver() {
         viewModel.userData.observe(viewLifecycleOwner, {
-            navigateAuth(it)
+            when (it.status) {
+                Status.LOADING -> {
+                }
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    navigateLogin()
+                }
+                Status.SUCCESS -> {
+                    navigateAuth(it.data)
+                }
+            }
         })
     }
 
@@ -48,7 +60,7 @@ class SplashFragment : BaseFragment<SplashViewModel>() {
                 AuthType.ADMIN -> {
                 }
             }
-        }?: run{navigateLogin()}
+        } ?: run { navigateLogin() }
 
     }
 

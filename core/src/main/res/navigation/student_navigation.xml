@@ -5,15 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/navigation_dashboard">
     <fragment
-        android:id="@+id/navigation_account"
-        android:name="com.cheise_proj.core.feature.student.ui.account.AccountFragment"
-        android:label="@string/title_accounts"
-        tools:layout="@layout/fragment_account" >
-        <action
-            android:id="@+id/action_navigation_account_to_navigation_profile"
-            app:destination="@id/navigation_profile" />
-    </fragment>
-    <fragment
         android:id="@+id/navigation_inbox"
         android:name="com.cheise_proj.core.feature.student.ui.inbox.InboxFragment"
         android:label="@string/title_inbox"
@@ -34,8 +25,8 @@
         android:label="fragment_academics"
         tools:layout="@layout/fragment_academics" />
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.cheise_proj.core.feature.student.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/navigation_account"
+        android:name="com.cheise_proj.core.feature.student.ui.account.AccountMainFragment"
+        android:label="Accounts"
+        tools:layout="@layout/fragment_account_main" />
 </navigation>

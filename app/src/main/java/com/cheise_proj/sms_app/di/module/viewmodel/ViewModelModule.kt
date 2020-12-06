@@ -2,6 +2,7 @@ package com.cheise_proj.sms_app.di.module.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cheise_proj.core.feature.student.ui.fees.FeesPaidViewModel
 import com.cheise_proj.core.feature.student.ui.profile.ProfileViewModel
 import com.cheise_proj.core.shared.ui.auth.login.LoginViewModel
 import com.cheise_proj.core.shared.ui.auth.splash.SplashViewModel
@@ -20,6 +21,11 @@ class ViewModelModule {
         @Binds
         fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
+
+        @Binds
+        @IntoMap
+        @ViewModelKey(FeesPaidViewModel::class)
+        fun bindFeesPaidViewModel(feesPaidViewModel: FeesPaidViewModel): ViewModel
 
         @Binds
         @IntoMap
