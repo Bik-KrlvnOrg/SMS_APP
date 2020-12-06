@@ -19,6 +19,7 @@
             android:layout_gravity="bottom"
             android:background="@android:color/transparent"
             app:contentInsetStart="0dp"
+            app:hideOnScroll="true"
             app:contentInsetStartWithNavigation="0dp"
             app:fabAlignmentMode="center">
 

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.cheise_proj.infrastructure.local.entity.StudentEntity
+import io.reactivex.Observable
 import io.reactivex.Single
 
 @Dao
@@ -13,5 +14,5 @@ interface ProfileDao {
     fun saveStudent(studentEntity: StudentEntity)
 
     @Query("SELECT * FROM student")
-    fun getStudentProfile(): Single<StudentEntity>
+    fun getStudentProfile(): Observable<StudentEntity>
 }

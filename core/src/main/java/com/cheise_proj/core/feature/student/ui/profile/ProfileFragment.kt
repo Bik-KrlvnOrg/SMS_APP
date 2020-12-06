@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.cheise_proj.core.R
 import com.cheise_proj.core.shared.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.item_profile.view.*
+import kotlinx.android.synthetic.main.item_content.view.*
 
 
 /**
@@ -44,7 +44,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
         item_container.removeAllViews()
         for ((key, value) in data) {
             val itemList = LayoutInflater.from(requireContext())
-                .inflate(R.layout.item_profile, item_container, false)
+                .inflate(R.layout.item_content, item_container, false)
             with(itemList) {
                 item_header.text = key
                 item_subtitle.text = value

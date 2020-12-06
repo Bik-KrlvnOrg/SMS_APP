@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.cheise_proj.infrastructure.local.entity.UserEntity
 import io.reactivex.Single
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {

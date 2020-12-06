@@ -8,7 +8,6 @@ import com.cheise_proj.infrastructure.local.mapper.mapFrom
 import com.cheise_proj.infrastructure.remote.mapper.mapFrom
 import com.cheise_proj.infrastructure.remote.service.ApiService
 import hu.akarnokd.rxjava3.bridge.RxJavaBridge
-import io.reactivex.Single
 import io.reactivex.rxjava3.core.Observable
 import timber.log.Timber
 import javax.inject.Inject
@@ -24,14 +23,9 @@ class StudentRepositoryImpl @Inject constructor(
     override fun getProfile(): Observable<Student?> {
         val local = RxJavaBridge.toV3Observable(
             profileDao.getStudentProfile()
-                .onErrorResumeNext {
-                    Single.error(Throwable(PROFILE_ERROR))
-                }
-                .toObservable()
                 .map {
                     it.mapFrom()
                 }
-
         )
         val remote = apiService.studentProfile()
             .map {
@@ -44,7 +38,7 @@ class StudentRepositoryImpl @Inject constructor(
                 it
             }.onErrorResumeNext { Observable.error(Throwable(it.localizedMessage)) }
 
-        return Observable.mergeDelayError(remote, local)
+        return Observable.mergeDelayError(local, remote)
     }
 
 }
