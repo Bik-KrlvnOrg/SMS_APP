@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cheise_proj.core">
 
     <application>
-        <activity android:name="com.cheise_proj.core.feature.student.StudentActivity" />
+        <activity android:name=".feature.MainActivity"></activity>
     </application>
+
 </manifest>

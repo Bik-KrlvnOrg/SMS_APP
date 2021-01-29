@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navigation_academics"
-        android:icon="@drawable/ic_graduation"
-        android:title="@string/title_academics" />
 
     <item
-        android:id="@+id/navigation_inbox"
+        android:id="@+id/dashboardStudentMainFragment"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home" />
 
-        android:icon="@drawable/ic_email"
-        android:title="@string/title_inbox" />
-
-    <item
-        android:id="@+id/navigation_dashboard"
-        android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_library"
-        android:icon="@drawable/ic_library"
-        android:title="@string/title_library" />
+        android:id="@+id/academicsStudentMainFragment"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Academics" />
 
     <item
-        android:id="@+id/navigation_account"
+        android:id="@+id/notificationStudentMainFragment"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/accountStudentMainFragment"
         android:icon="@drawable/ic_baseline_account_circle_24"
-        android:title="@string/title_accounts" />
+        android:title="Account" />
+
 
 </menu>

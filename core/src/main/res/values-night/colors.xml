@@ -9,5 +9,8 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="primaryTextLightColor">#ffffff</color>
     <color name="bgColor">#121212</color>
+    <color name="bgColor2">#121212</color>
     <color name="textColorLight">#ffffff</color>
+    <color name="textColorOrange">#DC4F89</color>
+
 </resources>
