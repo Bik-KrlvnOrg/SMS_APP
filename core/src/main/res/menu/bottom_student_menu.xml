@@ -10,12 +10,12 @@
 
     <item
         android:id="@+id/academicsStudentMainFragment"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_baseline_menu_book_24"
         android:title="Academics" />
 
     <item
         android:id="@+id/notificationStudentMainFragment"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_baseline_notifications_24"
         android:title="Notification" />
 
     <item

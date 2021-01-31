@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_student_academics"
+    app:startDestination="@id/academicsStudentFragment">
+
+    <fragment
+        android:id="@+id/academicsStudentFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.AcademicsStudentFragment"
+        android:label="Academics"
+        tools:layout="@layout/fragment_academics_student" />
+</navigation>
