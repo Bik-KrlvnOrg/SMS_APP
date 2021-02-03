@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.base.BaseFragment
 import com.cheise_proj.core.feature.student.dashboard.adapter.DashboardAdapter
 import com.cheise_proj.core.feature.student.dashboard.vo.DashboardItem
 import kotlinx.android.synthetic.main.fragment_academics_student.*
-import timber.log.Timber
 
 class AcademicsStudentFragment : BaseFragment() {
 
@@ -34,12 +34,21 @@ class AcademicsStudentFragment : BaseFragment() {
 
     private fun initRecyclerView() {
         _adapter = DashboardAdapter {
-            Timber.i("onClickItem: ${it?.id}")
+            it?.let { dashboardItem ->
+                if (it.actionId != null) {
+                    findNavController().navigate(it.actionId!!)
+                }
+            }
         }
         _adapter.submitList(
             arrayListOf(
                 DashboardItem(1, "Assignment", R.drawable.book),
-                DashboardItem(1, "Examination", R.drawable.examination),
+                DashboardItem(
+                    1,
+                    "Examination",
+                    R.drawable.examination,
+                    R.id.action_academicsStudentFragment_to_examinationMainFragment
+                ),
                 DashboardItem(1, "Timetable", R.drawable.timetable),
                 DashboardItem(1, "Report", R.drawable.achievement),
             )

@@ -1,4 +1,4 @@
-package com.cheise_proj.core.feature.student.academics
+package com.cheise_proj.core.feature.student.academics.examination
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cheise_proj.core.R
 
-
-class ExaminationStudentFragment : Fragment() {
+class ExaminationMainFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,8 +15,7 @@ class ExaminationStudentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_examination_student, container, false)
+        return inflater.inflate(R.layout.fragment_examination_main, container, false)
     }
-
 
 }

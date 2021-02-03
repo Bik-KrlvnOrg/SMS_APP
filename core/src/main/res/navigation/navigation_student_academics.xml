@@ -9,5 +9,13 @@
         android:id="@+id/academicsStudentFragment"
         android:name="com.cheise_proj.core.feature.student.academics.AcademicsStudentFragment"
         android:label="Academics"
-        tools:layout="@layout/fragment_academics_student" />
+        tools:layout="@layout/fragment_academics_student" >
+        <action
+            android:id="@+id/action_academicsStudentFragment_to_examinationMainFragment"
+            app:destination="@id/examinationMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/examinationMainFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.examination.ExaminationMainFragment"
+        android:label="ExaminationMainFragment" />
 </navigation>
