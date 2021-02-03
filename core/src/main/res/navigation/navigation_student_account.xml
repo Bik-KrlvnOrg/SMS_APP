@@ -9,5 +9,22 @@
         android:id="@+id/accountStudentFragment"
         android:name="com.cheise_proj.core.feature.student.account.AccountStudentFragment"
         android:label="fragment_student_account"
-        tools:layout="@layout/fragment_student_account" />
+        tools:layout="@layout/fragment_student_account" >
+        <action
+            android:id="@+id/action_accountStudentFragment_to_profileStudentFragment"
+            app:destination="@id/profileStudentFragment" />
+        <action
+            android:id="@+id/action_accountStudentFragment_to_schoolFragment"
+            app:destination="@id/schoolFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileStudentFragment"
+        android:name="com.cheise_proj.core.feature.student.account.profile.ProfileStudentFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile_student" />
+    <fragment
+        android:id="@+id/schoolFragment"
+        android:name="com.cheise_proj.core.feature.school.SchoolFragment"
+        android:label="School Info"
+        tools:layout="@layout/fragment_school" />
 </navigation>
