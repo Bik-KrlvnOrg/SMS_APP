@@ -28,5 +28,5 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.cheise_proj.student.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_student_dashboard" />
 </navigation>

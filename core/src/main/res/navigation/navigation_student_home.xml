@@ -23,5 +23,5 @@
         android:id="@+id/dashboardStudentMainFragment"
         android:name="com.cheise_proj.core.feature.student.dashboard.DashboardStudentMainFragment"
         android:label="fragment_dashboard_student_main"
-        tools:layout="@layout/fragment_dashboard_student_main" />
+        tools:layout="@layout/fragment_student_dashboard_main" />
 </navigation>

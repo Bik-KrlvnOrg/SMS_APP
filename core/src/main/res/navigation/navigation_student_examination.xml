@@ -9,23 +9,23 @@
         android:id="@+id/examinationStudentFragment"
         android:name="com.cheise_proj.core.feature.student.academics.examination.ExaminationStudentFragment"
         android:label="Examination"
-        tools:layout="@layout/fragment_examination_student" >
+        tools:layout="@layout/fragment_student_examination" >
         <action
             android:id="@+id/action_examinationStudentFragment_to_examLevelDetailFragment"
             app:destination="@id/examLevelDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/examLevelDetailFragment"
-        android:name="com.cheise_proj.core.feature.student.academics.examination.ExamLevelDetailFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.examination.ExamLevelStudentDetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_exam_level_detail" >
+        tools:layout="@layout/fragment_student_exam_level_detail" >
         <action
             android:id="@+id/action_examLevelDetailFragment_to_examinationDetailFragment"
             app:destination="@id/examinationDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/examinationDetailFragment"
-        android:name="com.cheise_proj.core.feature.student.academics.examination.ExaminationDetailFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.examination.ExaminationStudentDetailFragment"
         android:label="Exam Score"
-        tools:layout="@layout/fragment_examination_detail" />
+        tools:layout="@layout/fragment_student_examination_detail" />
 </navigation>

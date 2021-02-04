@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/medium_margin"
+    tools:context=".feature.student.academics.task.modal.TaskFilterStudentModalFragment">
+
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/medium_margin"
+        android:text="Filter by:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btn_close"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toTopOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="@id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/medium_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/ic_baseline_close_24" />
+
+    <TextView
+        android:id="@+id/sub_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="@dimen/medium_margin"
+        android:text="Course"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+
+    <ScrollView
+        android:id="@+id/course_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/sub_header">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/course_chip_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+
+    <View
+        android:id="@+id/view_sep"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/course_scroll" />
+
+    <TextView
+        android:id="@+id/sub_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/medium_margin"
+        android:text="File"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+        app:layout_constraintTop_toBottomOf="@id/view_sep" />
+
+    <HorizontalScrollView
+        android:id="@+id/file_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/sub_text">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/file_type_chip_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_apply_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:padding="@dimen/medium_margin"
+        android:text="apply filter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/file_scroll" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

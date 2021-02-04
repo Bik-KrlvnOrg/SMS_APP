@@ -11,7 +11,7 @@ import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.base.BaseFragment
 import com.cheise_proj.core.feature.student.academics.examination.adapter.ExaminationAdapter
 import com.cheise_proj.core.feature.student.academics.examination.vo.ExaminationItem
-import kotlinx.android.synthetic.main.fragment_examination_student.*
+import kotlinx.android.synthetic.main.fragment_student_examination.*
 
 
 class ExaminationStudentFragment : BaseFragment() {
@@ -25,7 +25,7 @@ class ExaminationStudentFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_examination_student, container, false)
+        return inflater.inflate(R.layout.fragment_student_examination, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

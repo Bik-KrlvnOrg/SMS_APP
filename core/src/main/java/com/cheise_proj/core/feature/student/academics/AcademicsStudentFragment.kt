@@ -34,7 +34,7 @@ class AcademicsStudentFragment : BaseFragment() {
 
     private fun initRecyclerView() {
         _adapter = DashboardAdapter {
-            it?.let { dashboardItem ->
+            it?.let {
                 if (it.actionId != null) {
                     findNavController().navigate(it.actionId!!)
                 }
@@ -42,7 +42,12 @@ class AcademicsStudentFragment : BaseFragment() {
         }
         _adapter.submitList(
             arrayListOf(
-                DashboardItem(1, "Assignment", R.drawable.book),
+                DashboardItem(
+                    1,
+                    "Task",
+                    R.drawable.book,
+                    R.id.action_academicsStudentFragment_to_taskStudentMainFragment
+                ),
                 DashboardItem(
                     1,
                     "Examination",

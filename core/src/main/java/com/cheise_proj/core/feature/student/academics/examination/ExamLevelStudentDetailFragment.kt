@@ -11,9 +11,9 @@ import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.base.BaseFragment
 import com.cheise_proj.core.feature.student.academics.examination.adapter.ExaminationAdapter
 import com.cheise_proj.core.feature.student.academics.examination.vo.ExaminationItem
-import kotlinx.android.synthetic.main.fragment_exam_level_detail.*
+import kotlinx.android.synthetic.main.fragment_student_exam_level_detail.*
 
-class ExamLevelDetailFragment : BaseFragment() {
+class ExamLevelStudentDetailFragment : BaseFragment() {
     private lateinit var _adapter: ExaminationAdapter
 
     override fun getToolBar(): Toolbar? = toolbar
@@ -23,7 +23,7 @@ class ExamLevelDetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exam_level_detail, container, false)
+        return inflater.inflate(R.layout.fragment_student_exam_level_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

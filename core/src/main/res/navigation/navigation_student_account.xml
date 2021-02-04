@@ -21,7 +21,7 @@
         android:id="@+id/profileStudentFragment"
         android:name="com.cheise_proj.core.feature.student.account.profile.ProfileStudentFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile_student" />
+        tools:layout="@layout/fragment_student_profile" />
     <fragment
         android:id="@+id/schoolFragment"
         android:name="com.cheise_proj.core.feature.school.SchoolFragment"

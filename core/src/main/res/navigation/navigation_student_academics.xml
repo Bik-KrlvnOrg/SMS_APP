@@ -13,9 +13,16 @@
         <action
             android:id="@+id/action_academicsStudentFragment_to_examinationMainFragment"
             app:destination="@id/examinationMainFragment" />
+        <action
+            android:id="@+id/action_academicsStudentFragment_to_taskStudentMainFragment"
+            app:destination="@id/taskStudentMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/examinationMainFragment"
-        android:name="com.cheise_proj.core.feature.student.academics.examination.ExaminationMainFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.examination.ExaminationStudentMainFragment"
         android:label="ExaminationMainFragment" />
+    <fragment
+        android:id="@+id/taskStudentMainFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.task.TaskStudentMainFragment"
+        android:label="TaskStudentMainFragment" />
 </navigation>
