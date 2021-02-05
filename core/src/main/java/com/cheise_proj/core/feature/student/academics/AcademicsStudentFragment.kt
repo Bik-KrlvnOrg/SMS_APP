@@ -11,7 +11,7 @@ import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.base.BaseFragment
 import com.cheise_proj.core.feature.student.dashboard.adapter.DashboardAdapter
 import com.cheise_proj.core.feature.student.dashboard.vo.DashboardItem
-import kotlinx.android.synthetic.main.fragment_academics_student.*
+import kotlinx.android.synthetic.main.fragment_student_academics.*
 
 class AcademicsStudentFragment : BaseFragment() {
 
@@ -24,7 +24,7 @@ class AcademicsStudentFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_academics_student, container, false)
+        return inflater.inflate(R.layout.fragment_student_academics, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.student.academics.task.vo.TaskSliderItem
-import kotlinx.android.synthetic.main.fragment_task_slider_student.*
+import kotlinx.android.synthetic.main.fragment_student_task_slider.*
 
 private const val ARG_Position = "position"
 
@@ -32,7 +32,7 @@ class TaskSliderStudentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_task_slider_student, container, false)
+        return inflater.inflate(R.layout.fragment_student_task_slider, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
