@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.cheise_proj.core.R
@@ -48,13 +49,19 @@ class TaskStudentFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        _adapter = TaskAdapter {}
+        _adapter = TaskAdapter {
+            navigateToTaskDetail()
+        }
         _adapter.submitList(TaskItem.getTaskData())
         recycler_view.apply {
             hasFixedSize()
             layoutManager = LinearLayoutManager(context)
             adapter = _adapter
         }
+    }
+
+    private fun navigateToTaskDetail() {
+        findNavController().navigate(R.id.action_taskStudentFragment_to_taskDetailStudentFragment)
     }
 
     private fun openFilterModal() {

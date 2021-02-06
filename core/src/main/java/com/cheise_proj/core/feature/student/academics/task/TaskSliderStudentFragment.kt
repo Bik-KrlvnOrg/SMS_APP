@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.student.academics.task.vo.TaskSliderItem
 import kotlinx.android.synthetic.main.fragment_student_task_slider.*
@@ -49,7 +50,14 @@ class TaskSliderStudentFragment : Fragment() {
         item_2.text = item.teacherTitle
         item_3.text = item.date
         avatar.setImageDrawable(ContextCompat.getDrawable(requireContext(),item.image!!))
+        task_card.setOnClickListener {
+            navigateToTaskDetail()
+        }
 
+    }
+
+    private fun navigateToTaskDetail() {
+        findNavController().navigate(R.id.action_taskStudentFragment_to_taskDetailStudentFragment)
     }
 
 

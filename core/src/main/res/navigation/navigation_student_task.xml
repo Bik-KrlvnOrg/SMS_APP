@@ -9,5 +9,14 @@
         android:id="@+id/taskStudentFragment"
         android:name="com.cheise_proj.core.feature.student.academics.task.TaskStudentFragment"
         android:label="Today's Task"
-        tools:layout="@layout/fragment_student_task" />
+        tools:layout="@layout/fragment_student_task" >
+        <action
+            android:id="@+id/action_taskStudentFragment_to_taskDetailStudentFragment"
+            app:destination="@id/taskDetailStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailStudentFragment"
+        android:name="com.cheise_proj.core.feature.student.academics.task.TaskDetailStudentFragment"
+        android:label="Task Detail"
+        tools:layout="@layout/fragment_student_task_detail" />
 </navigation>
