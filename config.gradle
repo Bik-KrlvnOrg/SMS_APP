@@ -16,6 +16,7 @@ subprojects {
                 buildToolsVersion versions.buildToolsVersion
 
                 compileOptions {
+                    coreLibraryDesugaringEnabled true
                     sourceCompatibility JavaVersion.VERSION_1_8
                     targetCompatibility JavaVersion.VERSION_1_8
                 }
@@ -34,6 +35,7 @@ subprojects {
                 }
             }
             dependencies {
+                coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
                 implementation coreDeps.values()
                 kapt kaptDeps.values()
                 implementation uiDeps.values()
