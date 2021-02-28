@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_student_attendance"
+    app:startDestination="@id/attendanceStudentFragment">
+
+    <fragment
+        android:id="@+id/attendanceStudentFragment"
+        android:name="com.cheise_proj.core.feature.student.attendance.AttendanceStudentFragment"
+        android:label="Attendance"
+        tools:layout="@layout/fragment_student_attendance" />
+</navigation>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cheise_proj.core.R
 import com.cheise_proj.core.feature.base.BaseFragment
@@ -35,10 +36,20 @@ class DashboardStudentFragment : BaseFragment() {
     private fun initRecyclerView() {
         _adapter = DashboardAdapter {
             Timber.i("onClickItem: ${it?.id}")
+            it?.let {
+                if (it.actionId != null){
+                    findNavController().navigate(it.actionId!!)
+                }
+            }
         }
         _adapter.submitList(
             arrayListOf(
-                DashboardItem(1, "Attendance", R.drawable.appointment),
+                DashboardItem(
+                    1,
+                    "Attendance",
+                    R.drawable.appointment,
+                    R.id.action_dashboardFragment_to_attendanceStudentMainFragment
+                ),
                 DashboardItem(1, "Records", R.drawable.records),
                 DashboardItem(1, "Forums", R.drawable.forum),
                 DashboardItem(1, "Account Settings", R.drawable.account_setting),

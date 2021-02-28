@@ -9,5 +9,13 @@
         android:id="@+id/dashboardFragment"
         android:name="com.cheise_proj.core.feature.student.dashboard.DashboardStudentFragment"
         android:label="Dashboard"
-        tools:layout="@layout/fragment_student_dashboard" />
+        tools:layout="@layout/fragment_student_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_attendanceStudentMainFragment"
+            app:destination="@id/attendanceStudentMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceStudentMainFragment"
+        android:name="com.cheise_proj.core.feature.student.attendance.AttendanceStudentMainFragment"
+        android:label="AttendanceStudentMainFragment" />
 </navigation>
