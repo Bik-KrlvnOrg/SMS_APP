@@ -59,9 +59,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"
             android:padding="8dp"
+            android:drawableEnd="@drawable/ic_baseline_campaign_24"
             android:text="School Announcement"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryText2"
             app:layout_constraintBottom_toBottomOf="@id/item_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_3" />
@@ -80,7 +81,7 @@
             android:layout_marginStart="@dimen/medium_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_marginEnd="@dimen/medium_margin"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryText2"
             app:layout_constraintTop_toBottomOf="@id/view_sep"
             tools:text="@tools:sample/date/day_of_week" />
 
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_margin"
             android:layout_marginEnd="@dimen/medium_margin"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryText2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_sep"
             app:layout_constraintTop_toTopOf="@id/item_4"

@@ -13,4 +13,7 @@
     <color name="textColorLight">#ffffff</color>
     <color name="textColorOrange">#DC4F89</color>
 
+    <color name="colorPrimaryText2">#DC4F89</color>
+
+
 </resources>
