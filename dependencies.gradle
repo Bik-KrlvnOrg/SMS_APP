@@ -22,6 +22,7 @@ def AppCompact = '1.1.0'
 def LeakCanary = '2.2'
 def Jwt = '2.0.0'
 def RxJava = '3.0.0'
+def CompactCalendar = '2.0.2.2'
 
 ext.coreDeps = [
         kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
@@ -30,11 +31,13 @@ ext.coreDeps = [
 ]
 
 ext.uiDeps = [
-        appCompact  : "androidx.appcompat:appcompat:${AppCompact}",
-        material    : "com.google.android.material:material:${Material}",
-        constraint  : "androidx.constraintlayout:constraintlayout:${Constraint}",
-        nav_fragment: "androidx.navigation:navigation-fragment-ktx:${Navigation}",
-        nav_ktx     : "androidx.navigation:navigation-ui-ktx:${Navigation}"
+        appCompact     : "androidx.appcompat:appcompat:${AppCompact}",
+        material       : "com.google.android.material:material:${Material}",
+        constraint     : "androidx.constraintlayout:constraintlayout:${Constraint}",
+        nav_fragment   : "androidx.navigation:navigation-fragment-ktx:${Navigation}",
+        nav_ktx        : "androidx.navigation:navigation-ui-ktx:${Navigation}",
+        compactCalendar: "com.github.markj:CompactCalendarView:${CompactCalendar}"
+
 ]
 
 ext.deps = [
