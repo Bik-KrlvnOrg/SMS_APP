@@ -15,7 +15,7 @@
 
     <color name="colorPrimaryText2">#DC4F89</color>
 
-    <color name="textColorAbsent">#8e8e8e</color>
-    <color name="textColorPresent">#664B86</color>
+    <color name="textColorAbsent">#80FF00FF</color>
+    <color name="textColorPresent">#4CAF50</color>
 
 </resources>
